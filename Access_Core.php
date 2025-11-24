@@ -118,6 +118,15 @@ class Access_Core
             }
         }
 
+        $fail2banFacade = '\TypechoPlugin\Fail2ban\Api';
+        if (class_exists($fail2banFacade)) {
+            try {
+                if (is_callable([$fail2banFacade, 'isIpBanned']) && call_user_func([$fail2banFacade, 'isIpBanned'], $ip)) {
+                    return true;
+                }
+            } catch (\Throwable $e) {}
+        }
+
         return false;
     }
 
