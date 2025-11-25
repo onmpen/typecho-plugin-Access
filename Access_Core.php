@@ -43,14 +43,13 @@ class Access_Core
                 $this->action = 'migration';
                 $this->title = _t('数据迁移');
                 break;
-            case 'logs':
-                $this->action = 'logs';
-                $this->title = _t('访问日志');
-                break;
             case 'overview':
-            default:
                 $this->action = 'overview';
                 $this->title = _t('访问概览');
+                break;
+            default:
+                $this->action = 'logs';
+                $this->title = _t('访问日志');
                 break;
         }
         $this->hasMigration = (new Access_Migration($this->request))->exists();
